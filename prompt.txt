@@ -1,0 +1,44 @@
+loadings.js:68 GET http://localhost/supreme_management/api/customers/read_customer_orders.php?customer_id=1 500 (Internal Server Error)
+
+(anonymous)@loadings.js:68handleMouseUp_@unknown
+
+loadings.js:88 Error: TypeError: orders.some is not a function at loadings.js:71:50
+
+(anonymous)@loadings.js:88Promise.catch(anonymous)@loadings.js:87handleMouseUp_@unknown
+
+Find above the console error i am getting when trying to add a new loading to my modal on the loadings.php page, after selecting a customer from the drop list
+
+Find the files of my rice mills management project attached 
+
+Read the structure of my project in the structure.txt file 
+
+Find below the triggers related to the loading_items table and the structures of my loading related tables 
+
+Find the API endpoints files attached related to my loading along with the order related files I want you to fix a second problem i am facing, when deleting an loading, we are correctly updating the inventory stock but we are not allocating back the products to the related customer. 
+
+Basically when i open view bookings after deleting a loading, the list is empty, and after deleting a loading and i go back try to add a new loading again, its not retrieving the customer meaning that it is reading as if the customer does not have any products to load.
+
+Find the cause either in the code or in the triggers queries that can help me fix my problem and fix it. 
+
+Specify the paths of files you are working on if its files related and if its database related then ensure to generate the complete query having in mind that we have a system implemented and any adjustment must remember to work on whats available and accordingly update it.
+
+CREATE TRIGGER after_loading_item_delete AFTER DELETE ON loading_items FOR EACH ROW BEGIN DECLARE product_id INT; DECLARE total_loaded DECIMAL(10,2);
+
+-- Get product_id from order_item SELECT oi.product_id INTO product_id FROM order_items oi WHERE oi.id = OLD.order_item_id;
+
+-- Calculate remaining loaded quantity SELECT COALESCE(SUM(quantity), 0) INTO total_loaded FROM loading_items WHERE order_item_id = OLD.order_item_id;
+
+-- Update order_items status and quantity UPDATE order_items SET loaded_quantity = total_loaded, loading_status = CASE WHEN total_loaded = 0 THEN NULL WHEN total_loaded < quantity THEN 'Partially Loaded' ELSE 'Fully Loaded' END WHERE id = OLD.order_item_id;
+
+-- Return stock to product UPDATE products SET physical_stock = physical_stock + OLD.quantity, booked_stock = booked_stock + OLD.quantity WHERE id = product_id; END
+
+CREATE TRIGGER after_loading_item_insert AFTER INSERT ON loading_items FOR EACH ROW BEGIN DECLARE product_id INT; DECLARE total_loaded DECIMAL(10,2); DECLARE order_quantity DECIMAL(10,2);
+
+-- Get product_id and quantity from order_item SELECT oi.product_id, oi.quantity INTO product_id, order_quantity FROM order_items oi WHERE oi.id = NEW.order_item_id;
+
+-- Calculate total loaded for this order item SELECT COALESCE(SUM(quantity), 0) INTO total_loaded FROM loading_items WHERE order_item_id = NEW.order_item_id;
+
+-- Update order_items status and loaded quantity UPDATE order_items SET loaded_quantity = total_loaded, loading_status = CASE WHEN total_loaded >= quantity THEN 'Fully Loaded' WHEN total_loaded > 0 THEN 'Partially Loaded' ELSE 'Pending' END WHERE id = NEW.order_item_id; -- Update loading record status to Completed if all items are fully loaded UPDATE loading_records lr SET status = CASE WHEN NOT EXISTS ( SELECT 1 FROM loading_items li JOIN order_items oi ON li.order_item_id = oi.id WHERE li.loading_id = NEW.loading_id AND oi.loaded_quantity < oi.quantity ) THEN 'Completed' ELSE 'Pending' END WHERE id = NEW.loading_id; -- Update product stock UPDATE products SET physical_stock = physical_stock - NEW.quantity, booked_stock = booked_stock - NEW.quantity WHERE id = product_id; END
+
+Use the artifact to avoid long chats.
+

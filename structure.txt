@@ -1,0 +1,82 @@
+supreme_management/
+├── api/
+│   ├── customers/
+│   │   ├── create_credit_note.php
+│   │   ├── create_order.php
+│   │   ├── create.php
+│   │   ├── delete_order.php
+│   │   ├── delete_transaction.php
+│   │   ├── delete.php
+│   │   ├── read_all_bookings.php
+│   │   ├── read_customer_bookings.php
+│   │   ├── read_customer_orders.php
+│   │   ├── read_customer_transactions.php
+│   │   ├── read_customer_with_orders.php
+│   │   ├── read_order.php
+│   │   ├── read_orders.php
+│   │   ├── read.php
+│   │   └── record_payment.php
+│   │   └── update_order.php
+│   │   └── update.php
+│   ├── inventory/
+│   │   ├── create_loading_record.php
+│   │   ├── create_product.php
+│   │   ├── delete_loading_record.php
+│   │   ├── delete_product.php
+│   │   ├── get_product_stock.php
+│   │   ├── get_production_report.php
+│   │   ├── read_loading_records.php
+│   │   ├── read_production_records.php
+│   │   ├── read_products.php
+│   │   ├── record_production.php
+│   │   ├── update_loading_record.php
+│   │   └── update_product.php
+│   ├── users/
+│   │   ├── create.php
+│   │   ├── delete.php
+│   │   ├── read.php
+│   │   └── update.php
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── account.js
+│   │   ├── accounts.js
+│   │   ├── customer_orders.js
+│   │   ├── customers.js
+│   │   ├── inventory_report.js
+│   │   ├── inventory.js
+│   │   ├── loadings.js
+│   │   ├── main.js
+│   │   ├── orders.js
+│   │   ├── production.js
+│   │   └── users.js
+│   └── img/
+├── auth/
+│   ├── login_process.php
+│   ├── login.php
+│   └── logout.php
+├── config/
+│   ├── db.php
+│   └── path.php
+├── includes/
+│   ├── footer.php
+│   ├── header.php
+│   ├── sidebar.php
+│   └── topbar.php
+├── pages/
+│   ├── customers/
+│   │   ├── account.php
+│   │   ├── accounts.php
+│   │   ├── index.php
+│   │   ├── loadings.php
+│   │   └── orders.php
+│   ├── inventory/
+│   │   ├── index.php
+│   │   ├── production.php
+│   │   └── report.php
+│   ├── orders/
+│   │   └── customer.php
+│   ├── users/
+│   │   └── index.php
+└── index.php
