@@ -5,7 +5,7 @@ class Path {
     public static function getBasePath() {
         if (self::$basePath === null) {
             $path = dirname($_SERVER['PHP_SELF']);
-            $positions = ['/pages/customers', '/pages/users', '/pages/orders', '/pages/inventory', '/pages', '/api', '/auth'];
+            $positions = ['/pages/customers', '/pages/users', '/pages/orders', '/pages/inventory','/pages/suppliers', '/pages', '/api', '/auth'];
             
             foreach ($positions as $pos) {
                 if (strpos($path, $pos) !== false) {

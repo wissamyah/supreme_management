@@ -92,6 +92,19 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#suppliersSubmenu">
+                    <i class="bi bi-people-fill"></i> Suppliers
+                </a>
+                <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['REQUEST_URI'], '/suppliers') !== false) ? 'show' : ''; ?>" id="suppliersSubmenu">
+                    <li>
+                        <a href="<?php echo Path::url('/pages/suppliers/'); ?>" 
+                        class="<?php echo ($_SERVER['REQUEST_URI'] === Path::url('/pages/suppliers/') || $_SERVER['REQUEST_URI'] === Path::url('/pages/suppliers/index')) ? 'active' : ''; ?>">
+                            <i class="bi bi-list"></i> List of Suppliers
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>
