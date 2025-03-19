@@ -1,0 +1,318 @@
+/* assets/css/style.css */
+body {
+    padding-top: 56px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a, button {
+    cursor: url("../img/hand_cursor24.png"), pointer !important;
+}
+
+
+
+.navbar {
+    height: 56px;
+}
+
+.content-wrapper {
+    flex: 1;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+    padding: 20px;
+}
+
+.content-wrapper.sidebar-collapsed {
+    margin-left: 0;
+}
+
+.sidebar-wrapper {
+    min-height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    z-index: 100;
+    transition: all 0.3s;
+    margin-top: -1px; /* This fixes the gap */
+}
+
+.sidebar {
+    width: 250px;
+    background: #343a40;
+    color: #fff;
+    min-height: calc(100vh - 56px);
+    transition: all 0.3s;
+    margin-left: 0;
+}
+
+.sidebar.collapsed {
+    margin-left: -250px;
+}
+
+.sidebar .sidebar-header {
+    padding: 20px;
+    background: #2c3136;
+}
+
+.sidebar ul.components {
+    padding: 20px 0;
+}
+
+.sidebar ul li a {
+    padding: 10px 20px;
+    margin: 5px 10px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 6px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
+    background: #027bfe;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        margin-left: -250px;
+    }
+    
+    .sidebar.active {
+        margin-left: 0;
+    }
+}
+
+.sidebar .list-unstyled ul {
+    padding-left: 20px;
+}
+
+.sidebar .list-unstyled li a.active {
+    background-color: #027bfe;
+    color: #fff;
+}
+
+.sidebar .list-unstyled li a:hover {
+    background-color: #027bfe;
+    color: #fff;
+}
+
+.badge {
+    white-space: normal;
+    text-align: left;
+    line-height: 1.4;
+    display: inline-block;
+    margin-bottom: 2px;
+}
+
+.table-responsive {
+    overflow-x: auto !important;
+    overflow-y: visible !important; /* Change from hidden to visible */
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure dropdowns appear above other elements */
+#customersTable .dropdown-menu {
+    z-index: 1021;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
+
+.sidebar-user {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-user a:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    .sidebar-user {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.balance-link:hover {
+    background-color: rgba(0,0,0,.03);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: -4px -8px;
+}
+.balance-link {
+    padding: 4px 8px;
+    margin: -4px -8px;
+    transition: background-color 0.2s ease;
+    min-width: 150px; /* Ensure minimum width for balance column */
+    display: inline-flex;
+}
+
+/* Ensure actions column doesn't shrink too much */
+#customersTable th:last-child,
+#customersTable td:last-child {
+    min-width: 130px;
+}
+
+/* Optional: Set minimum widths for other columns if needed */
+#customersTable th:first-child,
+#customersTable td:first-child {
+    min-width: 120px; /* for Name */
+}
+
+#customersTable th:nth-child(2),
+#customersTable td:nth-child(2) {
+    min-width: 140px; /* for Company */
+}
+
+#customersTable th:nth-child(3),
+#customersTable td:nth-child(3) {
+    min-width: 120px; /* for Phone */
+}
+
+#customersTable th:nth-child(4),
+#customersTable td:nth-child(4) {
+    min-width: 100px; /* for State */
+}
+
+
+/* Transaction table specific styles */
+.transaction-table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.transaction-table td {
+    white-space: nowrap;
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+/* Specific styling for table headers */
+/* .transaction-table th {
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: #f8f9fa;
+} */
+
+/* Set minimum widths for columns */
+.transaction-table .date-column {
+    min-width: 140px;
+}
+
+.transaction-table .type-column {
+    min-width: 100px;
+}
+
+.transaction-table .description-column {
+    min-width: 160px;
+}
+
+.transaction-table .amount-column {
+    min-width: 120px;
+}
+
+.transaction-table .balance-column {
+    min-width: 120px;
+}
+
+.transaction-table .actions-column {
+    min-width: 80px;
+}
+
+/* Badge styles */
+.transaction-badge {
+
+    white-space: nowrap;
+}
+
+/* Button container styles */
+.transaction-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* View invoice button styles */
+.view-invoice-btn {
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .transaction-table-container {
+        margin: 0 -0.75rem;
+    }
+    
+    .transaction-table {
+        margin: 0;
+    }
+
+    .transaction-table td,
+    .transaction-table th {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    /* Adjust badge size on mobile */
+    .transaction-badge {
+        padding: 0.35em 0.65em;
+        font-size: 0.75em;
+    }
+
+    /* Compact buttons on mobile */
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .view-invoice-btn .btn-text {
+        display: none;
+    }
+    
+    .view-invoice-btn .btn-icon {
+        margin: 0;
+    }
+}
+
+/* Custom scrollbar for better UX */
+.transaction-table-container {
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.transaction-table-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.transaction-table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.transaction-table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.transaction-table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
